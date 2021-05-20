@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "node": "nodemon node.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@iota/converter": "^1.0.0-beta.30",
+    "@iota/core": "^1.0.0-beta.30",
+    "@iota/identity-wasm": "^0.3.1",
+    "aws-sdk": "^2.910.0",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1",
+    "ipfs-http-client": "^50.0.0",
+    "jspdf": "^2.3.1",
+    "jspdf-autotable": "^3.5.14",
+    "luxon": "^1.26.0",
+    "nodemon": "^2.0.7",
+    "sha3": "^2.1.4"
+  }
+}
