@@ -59,7 +59,7 @@ router.post("/create", async (req, res) => {
     const depth = 3;
     const minimumWeightMagnitude = 14;
 
-    const address = "HEQLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWOR99D";
+    const address = "iota1qrcdludz9krldt4aa8tx0m4248zkqz4vwlnur494v8u9928xsnwaksxvs5y";
     const tanglePayload = {
       size: size,
       created: currentDate,

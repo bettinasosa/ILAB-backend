@@ -1,6 +1,6 @@
 const CLIENT_CONFIG = {
   network: "main",
-  node: "https://chrysalis-nodes.iota.org:443",
+  node: "https://chrysalis-nodes.iota.org",
 }
 
 const EXPLORER_URL = "https://explorer.iota.org/mainnet/transaction";

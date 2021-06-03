@@ -1,25 +1,10 @@
-const express = require("express");
 const Identity = require("@iota/identity-wasm/node")
-const cors = require("cors");
-const server = express();
-const Issuer = require("./Issuer.json")
-const { createIdentity } = require("./utils/createDid")
-const { createVC } = require("./utils/createPersonalInformationVc")
-const fetch = require("node-fetch")
-const ilabform = require("./routes/Ilabform")
 const { CLIENT_CONFIG } = require("./config")
-require("dotenv").config()
-global.Headers = fetch.Headers
-global.Request = fetch.Request
-global.Response = fetch.Response
-global.fetch = fetch
 
 const {
   Digest,
-  DID,
   Document,
   KeyCollection,
-  KeyPair,
   KeyType,
   VerificationMethod,
   VerifiableCredential,
@@ -27,8 +12,7 @@ const {
 } = Identity
   
 
-async function run(Identity) {
-    console.log(Identity)
+async function run() {
   
     function generateUser(name) {
       
@@ -42,10 +26,10 @@ async function run(Identity) {
     }
   
     // Generate a KeyPair, DID, and Document for Alice and Bob
-    //const user1 = generateUser("Alice")
+    const user1 = generateUser("Alice")
     const user2 = generateUser("Bob")
   
-    //console.log("User (user1): ", user1)
+    console.log("User (user1): ", user1)
     console.log("User (user2): ", user2)
   
     // Add a Merkle Key Collection method for Bob, so compromised keys can be revoked.
@@ -53,37 +37,41 @@ async function run(Identity) {
     const method = VerificationMethod.createMerkleKey(Digest.Sha256, user2.doc.id, keys, "key-collection")
   
     // Add to the DID Document as a general-purpose verification method
+    user1.doc.insertMethod(method, "VerificationMethod")
     user2.doc.insertMethod(method, "VerificationMethod")
   
     // Sign all DID documents
-    //user1.doc.sign(user1.key)
+    user1.doc.sign(user1.key)
     user2.doc.sign(user2.key)
   
-    //console.log("Verified (user1): ", user1.doc.verify())
+    console.log("Verified (user1): ", user1.doc.verify())
     console.log("Verified (user2): ", user2.doc.verify())
   
-    //user1MessageId = await Identity.publish(user1.doc.toJSON())
-    const user2MessageId = await Identity.publish(user2.doc.toJSON())
+    user1MessageId = await Identity.publish(user1.doc.toJSON(), CLIENT_CONFIG)
+    user2MessageId = await Identity.publish(user2.doc.toJSON())
   
     // Publish all DID documents
-    //console.log(`Publish Result (user1): ${user1.doc.id.tangleExplorer}/transaction/${user1MessageId}`)
+    console.log(`Publish Result (user1): ${user1.doc.id.tangleExplorer}/transaction/${user1MessageId}`)
     console.log(`Publish Result (user2): ${user2.doc.id.tangleExplorer}/transaction/${user2MessageId}`)
   
-    // Prepare a credential subject indicating the degree earned by Alice
+    // Prepare a credential subject indicating Alice's identity
     let credentialSubject = {
-      id: user2.doc.id.toString(),
-      name: user2.name,
-      degree: {
-        name: "Bachelor of Science and Arts",
-        type: "BachelorDegree",
-      }
+      id: user1.doc.id.toString(),
+      name: user1.name,
+      Identity: {
+        gender: "Female",
+        birth: "24.05.1998",
+        size: "25",
+        location: "London",
+        channel: "online"
+      }// this will come from the form completed by the user in the app, or desktop app
     }
   
-    // Issue an unsigned `UniversityDegree` credential for Alice
+    // Issue an unsigned `Identity` credential for Bob
     const unsignedVc = VerifiableCredential.extend({
       id: "http://example.edu/credentials/3732",
-      type: "UniversityDegreeCredential",
-      issuer: user2.doc.id.toString(),
+      type: "IdentityCredential",
+      issuer: user1.doc.id.toString(),
       credentialSubject,
     })
   
@@ -98,16 +86,18 @@ async function run(Identity) {
     // Ensure the credential signature is valid
     console.log("Verifiable Credential", signedVc)
     console.log("Verified (credential)", user2.doc.verify(signedVc))
+    user2.doc.verify(signedVc)
   
     // Check the validation status of the Verifiable Credential
     console.log("Credential Validation", await Identity.checkCredential(signedVc.toString()))
+    await Identity.checkCredential(signedVc.toString())
   
     // Create a Verifiable Presentation from the Credential - signed by Alice's key
-    const unsignedVp = new VerifiablePresentation(user2.doc, signedVc.toJSON())
+    const unsignedVp = new VerifiablePresentation(user1.doc, signedVc.toJSON())
   
-    const signedVp = user2.doc.signPresentation(unsignedVp, {
+    const signedVp = user1.doc.signPresentation(unsignedVp, {
       method: "#key",
-      secret: user2.key.secret,
+      secret: user1.key.secret,
     })
   
     // Check the validation status of the Verifiable Presentation
@@ -117,17 +107,17 @@ async function run(Identity) {
     user2.doc.revokeMerkleKey(method.id.toString(), 0)
   
     // Set the Tangle message id of the previously published DID Document
-    user2.doc.previousMessageId = user2MessageId
+    //user2.doc.previousMessageId = user2MessageId
   
     // The "authentication" key was not compromised so it's safe to publish an update
-    user2.doc.sign(user2.key)
-    user2MessageId = await Identity.publish(doc.toJSON(), CLIENT_CONFIG)
+    //user2.doc.sign(user2.key)
+    //user2MessageId = await Identity.publish(user2.doc.toJSON(), CLIENT_CONFIG)
   
     console.log(`Publish Result (user2): ${user2.doc.id.tangleExplorer}/transaction/${user2MessageId}`)
   
     // Resolve DID documents
     console.log("Resolve Result (user1): ", await Identity.resolve(user1.doc.id.toString()))
-    //console.log("Resolve Result (user2): ", await Identity.resolve(user2.doc.id.toString()))
+    console.log("Resolve Result (user2): ", await Identity.resolve(user2.doc.id.toString()))
   
     // Check the validation status of the Verifiable Presentation
     //
@@ -137,7 +127,7 @@ async function run(Identity) {
   
   import("./index.js").then(async identity => {
     try {
-      await run(identity)
+      await run()
     } catch (e) {
       console.error(e)
     }

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 const { createIdentity } = require('./create_did');
+const { web } = require('./web');
 // const { manipulateIdentity } = require('./manipulate_did');
 // const { resolution } = require('./resolution');
 // const { createVC } = require('./create_vc');
@@ -32,6 +33,8 @@ async function main() {
             return await createVP();
         case 'merkle_key':
             return await merkleKey();
+        case 'web':
+            return await web();
         default:
             throw 'Unknown example name';
     }
