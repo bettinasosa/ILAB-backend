@@ -3,7 +3,6 @@
 
 const { resolve } = require('../node/identity_wasm')
 const { manipulateIdentity } = require('./manipulate_did');
-const { CLIENT_CONFIG } = require('./config');
 
 /*
     A short example to show how to resolve a DID. This returns the latest DID Document.
