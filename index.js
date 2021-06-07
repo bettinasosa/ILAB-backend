@@ -9,7 +9,7 @@ const Issuer = require("./Issuer.json")
 const { createIdentity } = require("./utils/createDid")
 const { createVC } = require("./utils/createPersonalInformationVc")
 const fetch = require("node-fetch")
-const questionnaireinfo = require("./routes/questionnaireinfo")
+const questionnaireinfo = require("./routes/questions")
 const { CLIENT_CONFIG } = require("./config")
 require("dotenv").config()
 global.Headers = fetch.Headers
@@ -32,9 +32,7 @@ const {
 server.use(cors())
 server.use(express.json({ limit: "10MB" }))
 
-server.use("/Ilabform", ilabform);
-
-server.use("/patient-questionnaire", questionnaireinfo);
+server.use("/questions", questionsRoute);
 
 server.get("/test", (req, res) => {
   res.send("Test route")
@@ -53,7 +51,7 @@ server.post("/create", async (req, res) => {
         });
     }
 
-    const did = await createIdentity()
+    const did = await createIdentity(CLIENT_CONFIG)
 
     const personalInfromationVc = await createVC(did.doc.id.toString(), FirstName, LastName, size, shoeSize, Birth, gender, address, city, state, postalCode, country)
 
@@ -138,6 +136,7 @@ server.post("/verify", async (req, res) => {
     }
 
     try {
+      console.log(id)
       // resolve the document
       const doc = await Identity.resolve(id, CLIENT_CONFIG)
       // parse the document
@@ -149,8 +148,8 @@ server.post("/verify", async (req, res) => {
           .status(200)
           .json({
             message: `Identity is valid and created at ${date}`,
-          });
-    }
+          });}
+
     } catch (error) {
       return res
       .status(500)

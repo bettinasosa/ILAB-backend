@@ -8,7 +8,7 @@ const ipfsClient = require("ipfs-http-client");
 const { DateTime } = require("luxon");
 const { SHA3 } = require("sha3");;
 const { CreatePDF } = require("./CreatePDF");
-const { CLIENT_CONFIG } = require("../config");
+const { CLIENT_CONFIG } = require("../../config");
 require("dotenv").config()
 global.Headers = fetch.Headers
 global.Request = fetch.Request
