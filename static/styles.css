@@ -1,0 +1,143 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background: #e0e5ec;
+}
+
+form {
+  /* Center the form on the page */
+  margin-top: 50%;
+  margin: auto;
+  width: 60%;
+  height: 80%;
+  font-family: "Roboto", sans-serif;
+  /* Form outline */
+  padding: 2%;
+  border-radius: 1em;
+  box-shadow: 9px 9px 16px 0 #a3b1c6, -9px -9px 16px 0 #ffffff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 1em;
+}
+
+form li + li {
+  margin-top: 1em;
+  border-radius: 1em;
+}
+
+label {
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+  color: #686a69;
+}
+
+input,
+textarea {
+  font-family: "Roboto", sans-serif;
+
+  /* Uniform text field size */
+  width: 70%;
+  height: 50%;
+  border-radius: 0.5em;
+  padding: 10px;
+
+  /* Match form field borders */
+  box-shadow: 3px 3px 16px 0 #a3b1c6, -3px -3px 16px 0 #ffffff;
+  border-width: 0px;
+}
+
+textarea {
+  /* Align multiline text fields with their labels */
+  vertical-align: top;
+
+  /* Provide space to type some text */
+  height: 5em;
+}
+app {
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 1%;
+  margin-top: 2%;
+}
+
+button {
+  /* This extra margin represent roughly the same space as the space
+       between the labels and their text fields */
+  margin-left: 80%;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 3px 3px 16px 0 #a3b1c6, -3px -3px 16px 0 #ffffff;
+  padding: 1em;
+  border-width: 0px;
+  border-radius: 0.5em;
+}
+button:hover {
+  background-color: grey;
+  color: white;
+}
+
+h1 {
+  margin-left: 1em;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+:root {
+  --color-lightest: #f9fdfe;
+  --color-gray-light: #cdcfcf;
+  --color-gray-medium: #686a69;
+  --color-gray-dark: #414643;
+  --color-darkest: #2a2f2c;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Set up general layout rules for outer containers. */
+.contact-form,
+.results {
+  max-width: 70%;
+  margin: 5vh auto;
+}
+
+.results pre {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: color-lightest;
+  border: 1px solid var(--color-gray-light);
+  overflow-x: scroll;
+}
+
+.contact-form input[type="checkbox"],
+.contact-form input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  border: 1px solid color-gray-light;
+}
+
+.contact-form button:hover {
+  background: var(--color-darkest);
+  cursor: pointer;
+}
+.group-label {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 90%;
+}
+.input-group {
+  margin-top: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.contact-form label.inline {
+  display: inline-block;
+  margin-left: 0.25rem;
+}

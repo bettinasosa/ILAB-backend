@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap" rel="stylesheet">
+    <link href=https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.13.0/polyfill.min.js>
+    <link rel="stylesheet" href="styles.css">
+    <style></style>
+    <script defer src="index.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.13.0/polyfill.min.js"></script>
     <meta charset="UTF-8">
     <title>IOTA Identity</title>
   </head>
   <body>
-    <script src="index.js"></script>
+    <app>ILAB</app>
+    <section class="contact-form">
+    <form>
+    <h1>Identity form</h1>
+      <ul>
+       <li>
+         <label for="name">Name:</label>
+         <input type="text" id="name" name="name">
+       </li>
+       <li>
+         <label for="surname">Surname:</label>
+         <input type="text" id="Surname" name="surname">
+       </li>
+       <li>
+        <label for="size">Size:</label>
+        <input type="text" id="size" name="size" value="UK Size">
+      </li>
+       <li>
+        <label for="shoesize">Shoe Size:</label>
+        <input type="text" id="shoesize" name="shoesize" value="UK Size">
+      </li>
+       <!-- <li>
+         <label for="msg">Message:</label>
+         <textarea id="msg" name="user_message">input some info</textarea>
+       </li> -->
+       <div class="input-group">
+        <p class="group-label">Please send me:</p>
+        <input id="snacks-pizza" name="snacks" type="checkbox" value="pizza"/>
+        <label class="inline" for="snacks-pizza">Pizza</label>
+        <input id="snacks-cake" name="snacks" type="checkbox" value="cake"/>
+        <label class="inline" for="snacks-cake">Cake</label>
+      </div>
+       <li class="button">
+        <button type="submit">Create Identity</button>
+      </li>
+      </ul>
+     </form>
+    </section>
+     <div class="results">
+      <h2>Form Data</h2>
+      <pre></pre>
+    </div>
   </body>
 </html>
