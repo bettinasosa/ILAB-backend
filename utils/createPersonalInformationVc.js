@@ -1,12 +1,13 @@
-const { VerifiableCredential, checkCredential, Document } = require("@iota/identity-wasm/node")
+const { VerifiableCredential, checkCredential, Document, KeyPair } = require("@iota/identity-wasm/node")
 const { CLIENT_CONFIG } = require('../config')
 const Issuer = require("../Issuer.json")
 
 /*
-    Here we are creating a Verifiable Credential and validate it.
+    This example shows how to create a Verifiable Credential and validate it.
     In this example, alice takes the role of the subject, while we also have an issuer.
     The issuer signs a UniversityDegreeCredential type verifiable credential with Alice's name and DID.
     This Verifiable Credential can be verified by anyone, allowing Alice to take control of it and share it with whoever they please.
+    @param {{network: string, node: string}} clientConfig
 */
 
 async function createVC(id, FirstName, LastName, size, shoeSize, Birth, gender,  address, city, state, postalCode, country) {
@@ -30,6 +31,7 @@ async function createVC(id, FirstName, LastName, size, shoeSize, Birth, gender, 
     }
 
     const deserializedIssuer = Document.fromJSON(Issuer.doc)
+    const deserializedKeyPar = KeyPair.fromJSON(testIssuer.key)
 
     // Create an unsigned `UniversityDegree` credential for Alice
     const unsignedVc = VerifiableCredential.extend({
@@ -45,6 +47,8 @@ async function createVC(id, FirstName, LastName, size, shoeSize, Birth, gender, 
         public: Issuer.key.public,
         secret: Issuer.key.secret,
     })
+     //console.log is it signed?
+  console.log(signedVc)
 
     //Check if the credential is verifiable
     const result = await checkCredential(signedVc.toString(), CLIENT_CONFIG);
