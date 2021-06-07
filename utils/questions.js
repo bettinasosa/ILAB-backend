@@ -9,7 +9,7 @@ const Issuer = require("../Issuer.json")
     @param {{network: string, node: string}} clientConfig
 */
 
-async function createquestionnaireinfoVc(id, FirstName, LastName, size, shoeSize, Birth, gender,  address, city, state, postalCode, country)  {
+async function questions(id, FirstName, LastName, size, shoeSize, Birth, gender,  address, city, state, postalCode, country)  {
 
   // Prepare a credential subject indicating the degree earned by Alice
   let questionnaireinfo = {
@@ -55,4 +55,4 @@ async function createquestionnaireinfoVc(id, FirstName, LastName, size, shoeSize
   return {result, signedVc};
 }
 
-exports.createquestionnaireinfoVc = createquestionnaireinfoVc;
+exports.questions = questions;

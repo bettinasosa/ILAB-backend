@@ -1,1 +1,19 @@
-{"key":{"type":"ed25519","public":"DJ6UUBM7cgKBpKwrXGLd2qhNmRp4xLsWoNoTniiUTmdV","secret":"6nTTehCUc6937yYByW7LZzfjcsfYLYqh3B6oPGraRZNF"},"doc":{"id":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2","verificationMethod":[{"id":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2#newKey","controller":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2","type":"Ed25519VerificationKey2018","publicKeyBase58":"Amkea5wsJu2qR1SVTPw1ubL3AB1XpQFSg2Hu35WKWDtz"}],"authentication":[{"id":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2#key","controller":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2","type":"Ed25519VerificationKey2018","publicKeyBase58":"DJ6UUBM7cgKBpKwrXGLd2qhNmRp4xLsWoNoTniiUTmdV"}],"created":"2021-05-20T18:47:09Z","updated":"2021-05-20T18:47:09Z","proof":{"type":"JcsEd25519Signature2020","verificationMethod":"#key","signatureValue":"QpkHinx7HXMJK7abuJqSRgaXCFvaYA3qGhQURbWvCpjjFcB4rQmNbbg6Y4eb7rcorzKfpXu8QMhMhCQdtpkmroD"}},"messageId":"83517d539a61d91ea409cdc59d8b48cd3ac423f9796faafda7bb5e175696095a"}
+{"key":
+    {"type":"ed25519","public":"DJ6UUBM7cgKBpKwrXGLd2qhNmRp4xLsWoNoTniiUTmdV",
+        "secret":"6nTTehCUc6937yYByW7LZzfjcsfYLYqh3B6oPGraRZNF"},
+        "doc":{
+            "id":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2",
+            "verificationMethod":[{"id":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2#newKey",
+                "controller":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2",
+                "type":"Ed25519VerificationKey2018",
+                "publicKeyBase58":"Amkea5wsJu2qR1SVTPw1ubL3AB1XpQFSg2Hu35WKWDtz"}],
+                "authentication":[{"id":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2#key",
+                    "controller":"did:iota:FZLMKEAy8MwP8irdAdJpdZjBEDv3aV6noR9oCUK5Djx2",
+                    "type":"Ed25519VerificationKey2018",
+                    "publicKeyBase58":"DJ6UUBM7cgKBpKwrXGLd2qhNmRp4xLsWoNoTniiUTmdV"}],
+                    "created":"2021-05-20T18:47:09Z","updated":"2021-05-20T18:47:09Z",
+                    "proof":{
+                        "type":"JcsEd25519Signature2020",
+                        "verificationMethod":"#key",
+                        "signatureValue":"QpkHinx7HXMJK7abuJqSRgaXCFvaYA3qGhQURbWvCpjjFcB4rQmNbbg6Y4eb7rcorzKfpXu8QMhMhCQdtpkmroD"}},
+                        "messageId":"83517d539a61d91ea409cdc59d8b48cd3ac423f9796faafda7bb5e175696095a"}

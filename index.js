@@ -9,7 +9,7 @@ const Issuer = require("./Issuer.json")
 const { createIdentity } = require("./utils/createDid")
 const { createVC } = require("./utils/createPersonalInformationVc")
 const fetch = require("node-fetch")
-const ilabform = require("./routes/Ilabform")
+const questionnaireinfo = require("./routes/questionnaireinfo")
 const { CLIENT_CONFIG } = require("./config")
 require("dotenv").config()
 global.Headers = fetch.Headers
@@ -33,6 +33,8 @@ server.use(cors())
 server.use(express.json({ limit: "10MB" }))
 
 server.use("/Ilabform", ilabform);
+
+server.use("/patient-questionnaire", questionnaireinfo);
 
 server.get("/test", (req, res) => {
   res.send("Test route")
