@@ -1,3 +1,6 @@
+const Identity = require("@iota/identity-wasm/node")
+const { CLIENT_CONFIG } = require("../config")
+
 function handleFormSubmit(event) {
     event.preventDefault();
     
@@ -37,6 +40,21 @@ function handleFormSubmit(event) {
     results.innerText = JSON.stringify(formJSON, null, 2);
     XHR.send( results );
   }
+
+function generateUser(name) {
+      
+    const { doc, key } = new Document(KeyType.Ed25519)
+
+    return {
+      key,
+      doc,
+      name,
+    }
+  }
   
   const form = document.querySelector('.contact-form');
+  const did = document.querySelector('.contact-form1');
   form.addEventListener('submit', handleFormSubmit, sendData);
+  did.addEventListener('submit',generateUser);
+  const user1 = generateUser();
+  console.log("User (user1): ", user1);

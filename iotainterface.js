@@ -67,7 +67,7 @@ async function run() {
       }// this will come from the form completed by the user in the app, or desktop app
     }
   
-    // Issue an unsigned `Identity` credential for Bob
+    // Issue an unsigned `Identity` credential 
     const unsignedVc = VerifiableCredential.extend({
       id: "http://example.edu/credentials/3732",
       type: "IdentityCredential",

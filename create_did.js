@@ -22,5 +22,3 @@ async function createIdentity() {
     return {key, doc, messageId};
 }
 exports.createIdentity = createIdentity;
-
-console.log(createIdentity)
