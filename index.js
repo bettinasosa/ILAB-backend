@@ -16,6 +16,7 @@ global.Headers = fetch.Headers
 global.Request = fetch.Request
 global.Response = fetch.Response
 global.fetch = fetch
+const port = process.env.PORT || 3001;
 
 const {
   Digest,
@@ -29,14 +30,15 @@ const {
   VerifiablePresentation,
 } = Identity
 
-server.use(cors())
+server.use(cors({
+  origin: 'http://localhost:3001'
+}))
 server.use(express.json({ limit: "10MB" }))
 
 server.use("/questionnaire", QuestionnaireRoute);
 
-server.get("/test", (req, res) => {
-  res.send("Test route")
-})
+server.get("/", (req, res) => 
+  res.send("Test route"));
 
 server.post("/create", async (req, res) => {
   try {
@@ -232,8 +234,4 @@ server.post("/update-personal-credential", async (req, res) =>{
 
 
 
-server.listen(process.env.PORT || 3001, ()=>{
-  console.log("***********************************");
-  console.log("API server listening at localhost:3001");
-  console.log("***********************************");
-});
+server.listen(port, () => console.log(`http://localhost:${port}`));

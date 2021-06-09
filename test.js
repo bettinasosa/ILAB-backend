@@ -30,7 +30,7 @@ function handleFormSubmit(event) {
     } );
 
     // Set up our request
-    XHR.open( "POST", "http://localhost:3001" );
+    XHR.open( "POST", "https://example.com/cors.php" );
 
     // The data sent is what the user provided in the form
     const results = document.querySelector('.results pre');

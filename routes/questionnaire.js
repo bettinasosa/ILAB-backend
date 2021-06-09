@@ -37,14 +37,6 @@ router.post("/create", async (req, res) => {
 
     const Questionnaire = await questions(CLIENT_CONFIG, id, FirstName, LastName, size, shoeSize, Birth, gender,  address, city, state, postalCode, country)
 
-    /* if (personalInfromationVc.result.verified) {
-      return res
-        .status(500)
-        .json({
-          message: "Your credential is not verified",
-        });
-    } */
-
     return res
       .status(200)
       .json({
