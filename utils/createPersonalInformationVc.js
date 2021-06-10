@@ -48,10 +48,12 @@ async function createVC(id, FirstName, LastName, size, shoeSize, Birth, gender, 
         secret: Issuer.key.secret,
     })
      //console.log is it signed?
-  console.log(signedVc)
+     console.log("SignedVC:")
+    console.log(signedVc)
 
     //Check if the credential is verifiable
     const result = await checkCredential(signedVc.toString(), CLIENT_CONFIG);
+     console.log("Result:")
     console.log(result)
 
     return {result, signedVc};
