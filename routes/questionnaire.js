@@ -43,6 +43,7 @@ router.post("/create", async (req, res) => {
         Questionnaire: Questionnaire.signedVc,
       });
   } catch (error) {
+    console.error(error)
     return res
       .status(500)
       .json({

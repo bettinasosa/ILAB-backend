@@ -31,7 +31,7 @@ async function createVC(id, FirstName, LastName, size, shoeSize, Birth, gender, 
     }
 
     const deserializedIssuer = Document.fromJSON(Issuer.doc)
-    const deserializedKeyPar = KeyPair.fromJSON(testIssuer.key)
+    const deserializedKeyPar = KeyPair.fromJSON(Issuer.key)
 
     // Create an unsigned `UniversityDegree` credential for Alice
     const unsignedVc = VerifiableCredential.extend({

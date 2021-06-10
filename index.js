@@ -30,9 +30,7 @@ const {
   VerifiablePresentation,
 } = Identity
 
-server.use(cors({
-  origin: 'http://localhost:3001'
-}))
+server.use(cors())
 server.use(express.json({ limit: "10MB" }))
 
 server.use("/questionnaire", QuestionnaireRoute);
@@ -41,8 +39,10 @@ server.get("/", (req, res) =>
   res.send("Test route"));
 
 server.post("/create", async (req, res) => {
+  console.log("got it")
   try {
     const {FirstName, LastName, size, shoeSize, Birth, gender, address, city, state, postalCode, country} = req.body;
+    console.log("1")
   
     const requestIsIncomplete = Object.values(req.body).find(value => !value);
     if (requestIsIncomplete) {
@@ -52,11 +52,15 @@ server.post("/create", async (req, res) => {
           message: "You are missing personal information",
         });
     }
+    console.log("2")
 
     const did = await createIdentity(CLIENT_CONFIG)
 
+    console.log("2.5")
+
     const personalInfromationVc = await createVC(did.doc.id.toString(), FirstName, LastName, size, shoeSize, Birth, gender, address, city, state, postalCode, country)
 
+    console.log("3")
 
     if (personalInfromationVc.result.verified) {
       return res
@@ -74,6 +78,7 @@ server.post("/create", async (req, res) => {
         message: `You have successfully created your digital identity, ${FirstName}`,
       });
   } catch (error) {
+    console.log(error)
     return res
       .status(500)
       .json({

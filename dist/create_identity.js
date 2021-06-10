@@ -1,5 +1,5 @@
 const Identity = require("@iota/identity-wasm/node")
-const { CLIENT_CONFIG, EXPLORER_URL } = require('./config')
+const { CLIENT_CONFIG } = require("./config")
 
 const {
   Document,
@@ -14,7 +14,7 @@ async function createIdentity() {
     doc.sign(key);
 
     //Publish the Identity to the IOTA Network
-    const messageId = await Identity.publish(doc.toJSON(), CLIENT_CONFIG);
+    const messageId = await publish(doc.toJSON(), CLIENT_CONFIG);
 
     //Log the results
     console.log(`Identity Creation: ${EXPLORER_URL}/${messageId}`);
@@ -22,4 +22,8 @@ async function createIdentity() {
     //Return the results
     return {key, doc, messageId};
 }
-exports.createIdentity = createIdentity;
+
+const user1 = createIdentity()
+console.log("User (user1): ", user1)
+
+document.getElementById("myBtn").addEventListener("click", createIdentity() )

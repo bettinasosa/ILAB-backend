@@ -125,10 +125,10 @@ async function run() {
     console.log("Presentation Validation", await Identity.checkPresentation(signedVp.toString()))
   }
   
-  import("./index.js").then(async identity => {
-    try {
-      await run()
-    } catch (e) {
-      console.error(e)
-    }
-  })
+  // import("./index.js").then(async identity => {
+  //   try {
+  //     await run()
+  //   } catch (e) {
+  //     console.error(e)
+  //   }
+  // })
